@@ -1,0 +1,25 @@
+# Ignore Packer secrets and variable files
+*.pkrvars.hcl
+*.auto.pkrvars.hcl
+.env.local.sh
+
+# Ignore sensitive shell scripts
+*.secret.sh
+
+# Ignore logs and output files
+packer-log.txt
+*.log
+*.bak
+*.tmp
+
+# Ignore build artifacts
+*.iso
+*.vhd
+*.box
+
+# Ignore OS-level junk
+.DS_Store
+Thumbs.db
+
+# Ignore VS Code settings (optional)
+.vscode/
