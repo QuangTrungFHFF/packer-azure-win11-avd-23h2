@@ -1,8 +1,8 @@
-
 variable "client_id" {}
 variable "client_secret" {}
 variable "tenant_id" {}
 variable "subscription_id" {}
+variable "password" {}
 
 locals {
   timestamp = formatdate("YYYYMMDDhhmmss", timestamp())
@@ -40,9 +40,9 @@ source "azure-arm" "win11-23h2" {
   winrm_insecure = true
   winrm_timeout  = "5m"
   winrm_username = "packer"
-  winrm_password = "Supers3cr3t!"
+  winrm_password = var.password
 
-  vm_size = "Standard_D2s_v3"
+  vm_size = "Standard_D2s_v4"
 }
 
 build {
@@ -58,10 +58,23 @@ build {
     ]
   }
 
+ # Install Language Pack 
   provisioner "powershell" {
     elevated_user     = "packer"
-    elevated_password = "Supers3cr3t!"
+    elevated_password = var.password
     script            = "scripts/setup.ps1"
   }
+
+  provisioner "windows-restart" {
+    restart_timeout = "7m"
+  }
+
+#Setup configuration
+  provisioner "powershell" {
+    elevated_user     = "packer"
+    elevated_password = var.password
+    script            = "scripts/postsetup.ps1"
+  }
+
 
 }
