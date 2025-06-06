@@ -25,12 +25,12 @@ Write-Host "▶ Installing language pack and UI settings..."
 # Install language capabilities via DISM
 dism /online /add-capability /capabilityname:Language.Basic~~~de-DE~0.0.1.0 /quiet /norestart
 
-# Optional additional components:
-# dism /online /add-capability /capabilityname:Language.Speech~~~de-DE~0.0.1.0 /quiet /norestart
-# dism /online /add-capability /capabilityname:Language.TextToSpeech~~~de-DE~0.0.1.0 /quiet /norestart
-# dism /online /add-capability /capabilityname:Language.Handwriting~~~de-DE~0.0.1.0 /quiet /norestart
+# Optional components:
+ dism /online /add-capability /capabilityname:Language.Speech~~~de-DE~0.0.1.0 /quiet /norestart
+ dism /online /add-capability /capabilityname:Language.TextToSpeech~~~de-DE~0.0.1.0 /quiet /norestart
+ dism /online /add-capability /capabilityname:Language.Handwriting~~~de-DE~0.0.1.0 /quiet /norestart
 Write-Host "▶ DISM command(s) issued. Waiting for changes to register before restart..."
+
 Write-Host "▶ Sleep..."
-# Wait briefly for changes to register
 Start-Sleep -Seconds 60
-Write-Host "▶ Language pack installation script complete. System will now be restarted by Packer."
+Write-Host "▶ Language pack script completd. System will now be restarted by Packer."
